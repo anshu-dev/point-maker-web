@@ -3,6 +3,11 @@
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
+It is front end app build in Ember. 
+It shows a map at the top and a list of entered points below that.
+Click on map, show popup to enter name and save that name with coordinates.
+Point can be edited and deleted. 
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
@@ -14,7 +19,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone https://github.com/anshu-dev/point-maker-web.git` this repository
 * `cd point-maker-web`
 * `npm install`
 

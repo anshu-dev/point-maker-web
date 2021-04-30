@@ -1,0 +1,35 @@
+<div class="row"  ...attributes>
+  <div class='col-12'>
+    <h3>Points</h3>
+  </div>
+  {{#each @points as |point|}}
+    <div class="col-3 points">
+      <div class="actions">
+        <a {{action "editPopup" point}}>
+          <img src="images/edit.png">
+        </a>
+        <a {{action "deletePoint" point.id}}>
+          <img src="images/delete.png">
+        </a>
+      </div>
+      <div>Name: {{point.name}}</div> 
+      <div>Latitude: {{point.latitude}}</div>
+      <div>Longitude: {{point.longitude}}</div>
+    </div>
+  {{/each}}
+</div>
+
+  <BsModal @open={{this.showEditPopup}} @onSubmit={{action "editPoint" this.pointFields}} as |Modal|>
+    <Modal.header>
+      <h4 class="modal-title">Edit Point</h4>
+    </Modal.header>
+    <Modal.body>
+      <label>Enter Name</label>
+      <Input @id="name" @class='form-control' @value={{mut this.pointFields.name}} @placeholder="Name" />
+    </Modal.body>
+    <Modal.footer as |footer|>
+      <BsButton @onClick={{action this.hidePopup}} @type="secondary">Cancel</BsButton>
+      <BsButton @onClick={{action editPoint this.pointFields}} @type="primary">Update</BsButton>
+    </Modal.footer>
+  </BsModal>
+
