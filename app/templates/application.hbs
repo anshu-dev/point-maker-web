@@ -1,7 +1,16 @@
-
+{{page-title "PointMakerWeb"}}
 <div class="container">
+  <div class="menu mt-4">
+  {{#if this.session.isAuthenticated}}
+    <a {{on "click" this.invalidateSession}}>Logout</a>
+  {{else}}
+    {{#link-to 'register'}}Register{{/link-to}}
+    {{#link-to 'login'}}Login{{/link-to}}
+  {{/if}}
 
-  {{page-title "PointMakerWeb"}}
-  <MapBox />
+</div>
+  {{#if this.session.isAuthenticated}}
+    <MapBox />
+  {{/if}}  
   {{outlet}}
 </div>
