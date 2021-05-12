@@ -13,14 +13,18 @@
   {{/map.source}}
   {{#if this.showPopup}}
     {{#map.popup onClose=(action 'closePopup') lngLat=(array this.coordinates.lng this.coordinates.lat)}}
-      <h4>Add Point</h4>
-      <BsForm @formLayout="horizontal" @model={{this}} @onSubmit={{action "submit"}} as |form|>
-        <form.element @controlType="name" @value={{(get this.pointFields.name)}} @label="Name" @placeholder="Name" @property="pointFields.name" />
-        <form.submitButton>Add</form.submitButton>
-        <BsButton @onClick={{action 'closePopup'}}>Cancel</BsButton>
-      </BsForm>
+      <form>
+        <h4>Add Point</h4>
+        <div class="form-group">
+          {{input class="form-control" controlType="name" value=this.pointFields.name placeholder="Name" property="pointFields.name"}}
+        </div>
+
+        <button type="submit" class="btn btn-primary" {{action "submit"}}>Add</button>
+        <button type="button" class="btn btn-danger" {{action 'closePopup'}}>Cancel</button>
+      </form>
     {{/map.popup}}
   {{/if}}
 
 {{/mapbox-gl}}
+
 <Points @points={{this.points}} @updatePoints={{this.updatePoints}} />

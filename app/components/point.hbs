@@ -1,0 +1,14 @@
+<div class="col-3 points">
+  <div class="actions">
+    <a {{action "editPopup" @point}}>
+      <img src="images/edit.png">
+    </a>
+    <a {{action "deletePoint" @point.id}}>
+      <img src="images/delete.png">
+    </a>
+  </div>
+  <div>Name: {{@point.name}}</div>
+  <div>Latitude: {{@point.latitude}}</div>
+  <div>Longitude: {{@point.longitude}}</div>
+  <div>Created By: {{@point.created_by}}</div>
+</div>
