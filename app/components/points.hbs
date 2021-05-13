@@ -5,12 +5,13 @@
       <input class="form-control"
         placeholder="Search Point"
         value={{this.query}}
-        {{on "change" this.searchPoint}}
+        oninput={{action "handleSearch"}}
       />
     </div>
   </div>
-
+  <div class="row">
   {{#each @points as |point|}}
-    <Point @point={{point}} @updatePoints={{@updatePoints}} />
+    <Point @point={{point}} @updatePoints={{@updatePoints}} @editPoint={{this.editPoint}} />
   {{/each}}
+  </div>
 </div>

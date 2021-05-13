@@ -10,10 +10,8 @@ export default class PointsComponent extends Component {
   @tracked pointFields = {id: 0, name: ''};
 
   @action
-    editPopup(point) {
-      this.showEditPopup = true;
-      const { id, name } = point;
-      this.pointFields = {id, name };
+    async editPopup(point) {
+      this.args.editPoint(point)
     }
 
   @action
@@ -30,7 +28,6 @@ export default class PointsComponent extends Component {
     async deletePoint(id) {
       let point = await this.store.findRecord('point', id, { reload: true });
       await point.destroyRecord();
-
       this.args.updatePoints();
     }
 }

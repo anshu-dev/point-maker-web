@@ -18,8 +18,11 @@
         <div class="form-group mb-2">
           {{input class="form-control" controlType="name" value=this.pointFields.name placeholder="Name" property="pointFields.name"}}
         </div>
-
-        <button type="submit" class="btn btn-primary" {{action "submit"}}>Add</button>
+        {{#if this.isUpdate}} 
+          <button type="submit" class="btn btn-primary" {{action "update"}}>Update</button>
+        {{else}}
+          <button type="submit" class="btn btn-primary" {{action "submit"}}>Add</button>
+        {{/if}}
         <button type="button" class="btn btn-danger" {{action 'closePopup'}}>Cancel</button>
       </form>
     {{/map.popup}}
@@ -28,5 +31,5 @@
 {{/mapbox-gl}}
 
 {{#if this.points}}
-  <Points @points={{this.points}} @updatePoints={{this.updatePoints}} />
+  <Points @points={{this.points}} @updatePoints={{this.updatePoints}} @editPointOnMap={{this.editPointOnMap}} @searchPoints={{this.searchPoints}}/>
 {{/if}}

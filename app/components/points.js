@@ -23,11 +23,7 @@ export default class PointsComponent extends Component {
 
   @action
     async editPoint(pointData) {
-      let point = await this.store.findRecord('point', pointData.id);
-      point.name = pointData.name;
-      await point.save();
-      this.args.updatePoints();
-      this.showEditPopup = false;
+      this.args.editPointOnMap(pointData);
     }
 
   @action
@@ -38,9 +34,8 @@ export default class PointsComponent extends Component {
     }
 
   @action
-    async searchPoint(e){
-      this.points = await this.store.findAll('point', 'search');
-
+    async handleSearch(e){
+      this.args.searchPoints(e.target.value);
       console.log('test search', e.target.value)
     }
 }

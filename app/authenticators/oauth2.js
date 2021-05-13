@@ -2,8 +2,7 @@ import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-passwor
 import config from 'point-maker-web/config/environment';
 
 const host = config.apiUrl || '';
-const namespace = config.apiNamespace;
-const serverTokenEndpoint = [ host, namespace, 'users/sign_in' ];
+const serverTokenEndpoint = [ host, 'oauth/token' ];
 export default class OAuth2Authenticator extends OAuth2PasswordGrant {
   serverTokenEndpoint = serverTokenEndpoint.join('/')
 };

@@ -14,12 +14,7 @@ export default class LoginController extends Controller {
     try {
       await this.session.authenticate('authenticator:oauth2', identification, password);
     } catch(error) {
-      console.log(error)
-      // this.errorMessage = error.error || error;
-    }
-
-    if (this.session.isAuthenticated) {
-      // What to do with all this success?
+      this.errorMessage = 'Email or password is invalid!';
     }
   }
 
