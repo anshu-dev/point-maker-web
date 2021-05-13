@@ -6,7 +6,7 @@ import { inject as service } from '@ember/service';
 import config from 'point-maker-web/config/environment';
 
 export default class MapBoxComponent extends Component {
-  
+
   @tracked showPopup = false;
   @tracked coordinates = {lng: -96.7969879, lat: 32.7766642};
   @tracked pointFields = { name: '', latitude: '', longitude: ''};
@@ -17,7 +17,7 @@ export default class MapBoxComponent extends Component {
     type: 'FeatureCollection',
     features: []
   }
- 
+
   @action
     closePopup() {
       this.showPopup = false;
@@ -50,7 +50,7 @@ export default class MapBoxComponent extends Component {
     async submit() {
       let name = get(this, 'pointFields.name');
       let coordinates = get(this, 'coordinates');
-      let data = { name, longitude: coordinates.lng, latitude: coordinates.lat }
+      let data = { name, geometry: { longitude: coordinates.lng, latitude: coordinates.lat } }
       let pointData = this.store.createRecord('point', data);
       await pointData.save(); // => POST to '/posts'
       await this.allPoints();

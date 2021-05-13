@@ -12,7 +12,6 @@ export default class RegisterController extends Controller {
   async handleSubmit(e) {
     e.preventDefault();
     let { email, username, password, password1 } = this;
-    console.log(email, username, password, password1)
     const data = {"email": email, "username": username, "password": password, "password_confirmation": password1}
     let userData = this.store.createRecord('user', data);
     try {

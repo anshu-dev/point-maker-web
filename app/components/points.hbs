@@ -1,25 +1,16 @@
 <div class="row"  ...attributes>
   <div class='col-12'>
     <h3>Points</h3>
+    <div class="mb-3">
+      <input class="form-control"
+        placeholder="Search Point"
+        value={{this.query}}
+        {{on "change" this.searchPoint}}
+      />
+    </div>
   </div>
 
   {{#each @points as |point|}}
     <Point @point={{point}} @updatePoints={{@updatePoints}} />
   {{/each}}
 </div>
-
-<BsModal @open={{this.showEditPopup}} @onSubmit={{action "editPoint" this.pointFields}} as |Modal|>
-  <Modal.header>
-    <h4 class="modal-title">Edit Point</h4>
-  </Modal.header>
-  <Modal.body>
-    <label>Enter Name</label>
-    <Input @id="name" @class='form-control' @value={{mut this.pointFields.name}} @placeholder="Name" />
-  </Modal.body>
-  <Modal.footer as |footer|>
-    <BsButton @onClick={{action this.hidePopup}} @type="secondary">Cancel</BsButton>
-    <BsButton @onClick={{action editPoint this.pointFields}} @type="primary">Update</BsButton>
-  </Modal.footer>
-</BsModal>
-
-

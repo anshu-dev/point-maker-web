@@ -15,7 +15,7 @@
     {{#map.popup onClose=(action 'closePopup') lngLat=(array this.coordinates.lng this.coordinates.lat)}}
       <form>
         <h4>Add Point</h4>
-        <div class="form-group">
+        <div class="form-group mb-2">
           {{input class="form-control" controlType="name" value=this.pointFields.name placeholder="Name" property="pointFields.name"}}
         </div>
 
@@ -27,4 +27,6 @@
 
 {{/mapbox-gl}}
 
-<Points @points={{this.points}} @updatePoints={{this.updatePoints}} />
+{{#if this.points}}
+  <Points @points={{this.points}} @updatePoints={{this.updatePoints}} />
+{{/if}}

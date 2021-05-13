@@ -30,10 +30,17 @@ export default class PointsComponent extends Component {
       this.showEditPopup = false;
     }
 
-  @action 
+  @action
     async deletePoint(id) {
       let point = await this.store.findRecord('point', id, { reload: true });
       await point.destroyRecord();
       this.args.updatePoints();
+    }
+
+  @action
+    async searchPoint(e){
+      this.points = await this.store.findAll('point', 'search');
+
+      console.log('test search', e.target.value)
     }
 }
