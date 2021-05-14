@@ -1,6 +1,9 @@
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import config from 'point-maker-web/config/environment';
+
+const serverTokenEndpoint = [config.apiUrl, config.apiNamespace];
 
 export default class ApplicationAdapter extends JSONAPIAdapter {
   @service session;
@@ -13,6 +16,6 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 
     return headers;
   }
-  
-  host = 'http://127.0.0.1:3000/api';
+
+  host = serverTokenEndpoint.join('/');
 }
