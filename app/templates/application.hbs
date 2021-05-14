@@ -1,7 +1,24 @@
 {{page-title "PointMakerWeb"}}
+<div class="container">
+  <ul class="nav mt-4">
+  {{#if this.session.isAuthenticated}}
+    <li class="nav-item">
+      <a class="nav-link" href="/login" {{on "click" this.invalidateSession}}>Logout</a>
+    </li>
+    
+  {{else}}
+    <li class="nav-item">
+      {{#link-to 'register' class="nav-link"}}Register{{/link-to}}
+    </li>
+    <li class="nav-item">
+      {{#link-to 'login' class="nav-link"}}Login{{/link-to}}
+    </li>
+    
+  {{/if}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+</ul>
+  {{#if this.session.isAuthenticated}}
+    <MapBox />
+  {{/if}}  
+  {{outlet}}
+</div>

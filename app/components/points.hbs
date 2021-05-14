@@ -1,0 +1,17 @@
+<div class="row"  ...attributes>
+  <div class='col-12'>
+    <h3>Points</h3>
+    <div class="mb-3">
+      <input class="form-control"
+        placeholder="Search Point"
+        value={{this.query}}
+        oninput={{action "handleSearch"}}
+      />
+    </div>
+  </div>
+  <div class="row">
+  {{#each @points as |point|}}
+    <Point @point={{point}} @updatePoints={{@updatePoints}} @editPoint={{this.editPoint}} />
+  {{/each}}
+  </div>
+</div>
