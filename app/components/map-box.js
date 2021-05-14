@@ -38,8 +38,13 @@ export default class MapBoxComponent extends Component {
       this.showPopup = true;
       this.isUpdate = true;
       this.coordinates = {lng: point.longitude, lat: point.latitude}
-      this.pointFields = {id: point.id, name: point.name, latitude: point.latitude, longitude: point.longitude}
+      this.pointFields = {
+        id: point.id,
+        name: point.name,
+        geometry: { longitude: point.longitude, latitude: point.latitude }
+      }
     }
+
     @action
     async setMarkers () {
       let features = [];
@@ -60,7 +65,7 @@ export default class MapBoxComponent extends Component {
       this.points = await this.store.findAll('point');
       this.setMarkers();
     }
-  
+
   @action
     async submit() {
       let name = get(this, 'pointFields.name');
@@ -72,22 +77,26 @@ export default class MapBoxComponent extends Component {
       this.showPopup = false;
       this.pointFields = initialPointVal;
     }
+
   @action
     async update() {
       let name = get(this, 'pointFields.name');
       let id = get(this, 'pointFields.id')
       let point = await this.store.findRecord('point', id);
       point.name = name;
+      point.geometry = get(this, 'pointFields.geometry');
       await point.save();
       this.updatePoints();
       this.showPopup = false;
      this.isUpdate = false;
      this.pointFields = initialPointVal;
     }
+
   @action
     async updatePoints() {
       await this.allPoints();
     }
+
   @action
   async searchPoints(search) {
     this.points = await this.store.query('point',  { name: search });

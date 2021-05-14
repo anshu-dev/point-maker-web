@@ -36,6 +36,5 @@ export default class PointsComponent extends Component {
   @action
     async handleSearch(e){
       this.args.searchPoints(e.target.value);
-      console.log('test search', e.target.value)
     }
 }
