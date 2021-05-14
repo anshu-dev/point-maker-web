@@ -8,6 +8,7 @@
       <label for="exampleInputPassword1" class="form-label">Password</label>
       <input type="password" class="form-control" value={{this.password}} {{on "change" this.updatePassword}} />
     </div>
+    {{#link-to 'forgot-password' class="nav-link"}}Forgot password{{/link-to}}
     <button type="submit" class="btn btn-primary">Submit</button>
     {{#if this.errorMessage}}
       <p class="text-danger mt-4">{{this.errorMessage}}</p>
